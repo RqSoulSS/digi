@@ -5,6 +5,8 @@ import time
 from database import init_db, save_order, update_order, get_order, get_orders_by_status
 from fastapi.templating import Jinja2Templates
 from apscheduler.schedulers.background import BackgroundScheduler
+from fastapi import FastAPI
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -17,6 +19,10 @@ DIGISELLER_API_KEY = "59222275B5D04373BF47C4DF9686E73B"
 
 # URL API Digiseller
 DIGISELLER_API_URL = "https://api.digiseller.ru/api/order/info"
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
 
 # Инициализируем базу данных
 init_db()
